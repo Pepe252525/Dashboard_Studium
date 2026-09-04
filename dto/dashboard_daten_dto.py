@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 
+from dto.fortschritt_daten_dto import FortschrittDatenDTO
+from dto.modul_daten_dto import ModulDatenDTO
+
 
 @dataclass
 class DashboardDatenDTO:
@@ -10,3 +13,5 @@ class DashboardDatenDTO:
     notendurchschnitt: float | None
     bestandene_module: int
     laufende_module: int
+    module: list[ModulDatenDTO]
+    fortschritt_verlauf: list[FortschrittDatenDTO]
