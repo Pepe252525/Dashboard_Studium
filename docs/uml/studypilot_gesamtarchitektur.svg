@@ -102,7 +102,7 @@
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-876.25" font-family="Arial" font-size="10.00">+ berechne_erreichte_ects_am_datum(...) : Integer</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-852.25" font-family="Arial" font-size="10.00">+ berechne_fortschritt_am_datum(...) : Float</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-828.25" font-family="Arial" font-size="10.00">+ berechne_soll_fortschritt(...) : Float</text>
-<text xml:space="preserve" text-anchor="start" x="1139.75" y="-804.25" font-family="Arial" font-size="10.00">+ berechne_soll_ist_abweichung(...) : Float [0..1]</text>
+<text xml:space="preserve" text-anchor="start" x="1139.75" y="-804.25" font-family="Arial" font-size="10.00">+ berechne_soll_ist_abweichung(...) : Float </text>
 </g>
 <!-- StudyPilotApp&#45;&gt;StudienService -->
 <g id="edge20" class="edge">

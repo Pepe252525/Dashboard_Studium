@@ -162,7 +162,7 @@ digraph StudyPilot {
         <TR><TD ALIGN="LEFT">+ berechne_erreichte_ects_am_datum(...) : Integer</TD></TR>
         <TR><TD ALIGN="LEFT">+ berechne_fortschritt_am_datum(...) : Float</TD></TR>
         <TR><TD ALIGN="LEFT">+ berechne_soll_fortschritt(...) : Float</TD></TR>
-        <TR><TD ALIGN="LEFT">+ berechne_soll_ist_abweichung(...) : Float [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_soll_ist_abweichung(...) : Float </TD></TR>
       </TABLE>
     >];
   }
