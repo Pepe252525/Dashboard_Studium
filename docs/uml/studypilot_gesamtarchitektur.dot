@@ -1,0 +1,384 @@
+digraph StudyPilot {
+  graph [
+    rankdir=TB,
+    newrank=true,
+    compound=true,
+    splines=ortho,
+    nodesep=0.55,
+    ranksep=0.85,
+    pad=0.25,
+    bgcolor="white",
+    fontname="Arial",
+    fontsize=20,
+    labelloc="t",
+    label="StudyPilot – UML-Gesamtarchitektur"
+  ];
+
+  node [shape=plain, fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9, color="#3F4650", penwidth=1.2, arrowsize=0.75];
+
+  // =========================================================
+  // APPLICATION
+  // =========================================================
+  subgraph cluster_app {
+    label="Application-Schicht";
+    color="#78A8D8";
+    fillcolor="#EAF4FF";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    StudyPilotApp [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>StudyPilotApp</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ start() : None</TD></TR>
+      </TABLE>
+    >];
+  }
+
+  // =========================================================
+  // PRESENTATION
+  // =========================================================
+  subgraph cluster_presentation {
+    label="Präsentationsschicht";
+    color="#7CB38A";
+    fillcolor="#EEFAF0";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    DashboardView [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>DashboardView</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ zeige_dashboard(daten : DashboardDatenDTO) : None</TD></TR>
+      </TABLE>
+    >];
+
+    DashboardController [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>DashboardController</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- service : StudienService</TD></TR>
+        <TR><TD ALIGN="LEFT">- repository : StudienRepository</TD></TR>
+        <TR><TD ALIGN="LEFT">+ lade_dashboard() : DashboardDatenDTO</TD></TR>
+        <TR><TD ALIGN="LEFT">+ speichere_studiengang(...) : None</TD></TR>
+      </TABLE>
+    >];
+
+    CircularProgress [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>CircularProgress &lt;&lt;UI&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- wert : Float</TD></TR>
+        <TR><TD ALIGN="LEFT">+ set_wert(wert : Float) : None</TD></TR>
+        <TR><TD ALIGN="LEFT">+ paintEvent(event) : None</TD></TR>
+      </TABLE>
+    >];
+
+    FortschrittChart [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>FortschrittChart &lt;&lt;UI&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- daten : List&lt;FortschrittDatenDTO&gt;</TD></TR>
+        <TR><TD ALIGN="LEFT">+ set_daten(daten) : None</TD></TR>
+        <TR><TD ALIGN="LEFT">+ paintEvent(event) : None</TD></TR>
+      </TABLE>
+    >];
+
+    { rank=same; DashboardView; DashboardController; }
+    { rank=same; CircularProgress; FortschrittChart; }
+    DashboardView -> DashboardController [style=invis, weight=20];
+    CircularProgress -> FortschrittChart [style=invis, weight=20];
+    DashboardView -> CircularProgress [style=invis, weight=10];
+    DashboardController -> FortschrittChart [style=invis, weight=10];
+  }
+
+  // =========================================================
+  // DTO
+  // =========================================================
+  subgraph cluster_dto {
+    label="DTO-Schicht";
+    color="#C9A541";
+    fillcolor="#FFF8DF";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    DashboardDatenDTO [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>DashboardDatenDTO &lt;&lt;DTO&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ gesamt_ects : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ erreichte_ects : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ verbleibende_ects : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ fortschritt_prozent : Float</TD></TR>
+        <TR><TD ALIGN="LEFT">+ notendurchschnitt : Float [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">+ bestandene_module : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ laufende_module : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ module : List&lt;ModulDatenDTO&gt;</TD></TR>
+        <TR><TD ALIGN="LEFT">+ fortschritt_verlauf : List&lt;FortschrittDatenDTO&gt;</TD></TR>
+      </TABLE>
+    >];
+
+    ModulDatenDTO [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>ModulDatenDTO &lt;&lt;DTO&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ modulnummer : String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ bezeichnung : String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ semester : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ ects : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ status : String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ pruefungsleistungen : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ note : Float [0..1]</TD></TR>
+      </TABLE>
+    >];
+
+    FortschrittDatenDTO [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>FortschrittDatenDTO &lt;&lt;DTO&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ datum : Date</TD></TR>
+        <TR><TD ALIGN="LEFT">+ soll_fortschritt : Decimal</TD></TR>
+        <TR><TD ALIGN="LEFT">+ ist_fortschritt : Decimal [0..1]</TD></TR>
+      </TABLE>
+    >];
+
+    { rank=same; ModulDatenDTO; FortschrittDatenDTO; }
+    ModulDatenDTO -> FortschrittDatenDTO [style=invis, weight=20];
+    DashboardDatenDTO -> ModulDatenDTO [style=invis, weight=10];
+  }
+
+  // =========================================================
+  // SERVICE
+  // =========================================================
+  subgraph cluster_service {
+    label="Service-Schicht";
+    color="#9D86C9";
+    fillcolor="#F3EDFF";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    StudienService [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>StudienService</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_erreichte_ects(...) : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_verbleibende_ects(...) : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_fortschritt(...) : Decimal</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_notendurchschnitt(...) : Decimal [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">+ ermittle_bestandene_module(...) : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ ermittle_laufende_module(...) : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_erreichte_ects_am_datum(...) : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_fortschritt_am_datum(...) : Decimal</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_soll_fortschritt(...) : Decimal</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_soll_ist_abweichung(...) : Decimal</TD></TR>
+      </TABLE>
+    >];
+  }
+
+  // =========================================================
+  // REPOSITORY
+  // =========================================================
+  subgraph cluster_repository {
+    label="Repository-Schicht";
+    color="#7BA2C6";
+    fillcolor="#EEF6FF";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    StudienRepository [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>StudienRepository &lt;&lt;abstract&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">+ lade_studiengang() : Studiengang</TD></TR>
+        <TR><TD ALIGN="LEFT">+ speichere_studiengang(...) : None</TD></TR>
+      </TABLE>
+    >];
+
+    SQLiteStudienRepository [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>SQLiteStudienRepository</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- dateipfad : String</TD></TR>
+        <TR><TD ALIGN="LEFT">+ lade_studiengang() : Studiengang</TD></TR>
+        <TR><TD ALIGN="LEFT">+ speichere_studiengang(...) : None</TD></TR>
+      </TABLE>
+    >];
+
+    { rank=same; StudienRepository; SQLiteStudienRepository; }
+    StudienRepository -> SQLiteStudienRepository [style=invis, weight=20];
+  }
+
+  // =========================================================
+  // DOMAIN – QUERBALKEN
+  // =========================================================
+  subgraph cluster_domain {
+    label="Domain-Schicht";
+    color="#D37B7B";
+    fillcolor="#FFF0F0";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    Studiengang [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>Studiengang</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- bezeichnung : String</TD></TR>
+        <TR><TD ALIGN="LEFT">- gesamt_ects : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">- startdatum : Date</TD></TR>
+        <TR><TD ALIGN="LEFT">- regulaeres_enddatum : Date</TD></TR>
+        <TR><TD ALIGN="LEFT">- ziel_enddatum : Date</TD></TR>
+        <TR><TD ALIGN="LEFT">- zielnote : Float</TD></TR>
+      </TABLE>
+    >];
+
+    Semester [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>Semester</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- nummer : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">- bezeichnung : String</TD></TR>
+        <TR><TD ALIGN="LEFT">- studienstart : Date</TD></TR>
+        <TR><TD ALIGN="LEFT">- /startdatum : Date</TD></TR>
+        <TR><TD ALIGN="LEFT">- /enddatum : Date</TD></TR>
+      </TABLE>
+    >];
+
+    Modul [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>Modul</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- modulnummer : String</TD></TR>
+        <TR><TD ALIGN="LEFT">- bezeichnung : String</TD></TR>
+        <TR><TD ALIGN="LEFT">- ects : Integer</TD></TR>
+        <TR><TD ALIGN="LEFT">- status : Modulstatus</TD></TR>
+        <TR><TD ALIGN="LEFT">- /bestanden : Boolean</TD></TR>
+      </TABLE>
+    >];
+
+    Pruefungsleistung [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>Pruefungsleistung</B></TD></TR>
+        <TR><TD ALIGN="LEFT">- bezeichnung : String</TD></TR>
+        <TR><TD ALIGN="LEFT">- pruefungsart : Pruefungsart</TD></TR>
+        <TR><TD ALIGN="LEFT">- pruefungsdatum : Date [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">- note : Float [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">- /bestanden : Boolean</TD></TR>
+        <TR><TD ALIGN="LEFT">+ ist_bewertet() : Boolean</TD></TR>
+      </TABLE>
+    >];
+
+    { rank=same; Studiengang; Semester; Modul; Pruefungsleistung; }
+    Studiengang -> Semester [style=invis, weight=50];
+    Semester -> Modul [style=invis, weight=50];
+    Modul -> Pruefungsleistung [style=invis, weight=50];
+  }
+
+  // =========================================================
+  // ENUMS – QUERBALKEN
+  // =========================================================
+  subgraph cluster_enums {
+    label="Enums";
+    color="#7BA2C6";
+    fillcolor="#F0F7FF";
+    style="rounded,filled";
+    penwidth=1.2;
+
+    Modulstatus [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>Modulstatus &lt;&lt;enum&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">GEPLANT</TD></TR>
+        <TR><TD ALIGN="LEFT">IN_BEARBEITUNG</TD></TR>
+      </TABLE>
+    >];
+
+    Pruefungsart [label=<
+      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
+        <TR><TD><B>Pruefungsart &lt;&lt;enum&gt;&gt;</B></TD></TR>
+        <TR><TD ALIGN="LEFT">KLAUSUR</TD></TR>
+        <TR><TD ALIGN="LEFT">PROJEKTARBEIT</TD></TR>
+        <TR><TD ALIGN="LEFT">HAUSARBEIT</TD></TR>
+        <TR><TD ALIGN="LEFT">PORTFOLIO</TD></TR>
+        <TR><TD ALIGN="LEFT">PRAESENTATION</TD></TR>
+        <TR><TD ALIGN="LEFT">SONSTIGE</TD></TR>
+      </TABLE>
+    >];
+
+    { rank=same; Modulstatus; Pruefungsart; }
+    Modulstatus -> Pruefungsart [style=invis, weight=20];
+  }
+
+  // =========================================================
+  // HAUPTLAYOUT: 5 SCHICHTEN OBEN, DOMAIN UNTEN, ENUMS GANZ UNTEN
+  // =========================================================
+  { rank=same; StudyPilotApp; DashboardView; DashboardDatenDTO; StudienService; StudienRepository; }
+
+  StudyPilotApp -> DashboardView [style=invis, weight=100];
+  DashboardView -> DashboardDatenDTO [style=invis, weight=100];
+  DashboardDatenDTO -> StudienService [style=invis, weight=100];
+  StudienService -> StudienRepository [style=invis, weight=100];
+
+  DashboardDatenDTO -> Studiengang [style=invis, weight=120, minlen=2];
+  Studiengang -> Modulstatus [style=invis, weight=120, minlen=2];
+
+  // =========================================================
+  // FACHLICHE BEZIEHUNGEN
+  // =========================================================
+
+  // Application
+  StudyPilotApp -> DashboardView [style=dashed, taillabel="erzeugt", constraint=false];
+  StudyPilotApp -> DashboardController [style=dashed, taillabel="erzeugt", constraint=false];
+  StudyPilotApp -> StudienService [style=dashed, taillabel="erzeugt", constraint=false];
+  StudyPilotApp -> SQLiteStudienRepository [style=dashed, taillabel="erzeugt", constraint=false];
+
+  // View
+  DashboardView -> CircularProgress [
+    dir=both,
+    arrowtail=diamond,
+    arrowhead=none,
+
+    tailport=s,
+    headport=n,
+
+    taillabel="1",
+    headlabel="1",
+
+    labeldistance=1.4,
+    labelangle=25,
+    labelfloat=true,
+
+    constraint=false
+];
+ DashboardView -> FortschrittChart [
+    dir=both,
+    arrowtail=diamond,
+    arrowhead=none,
+
+    tailport=s,
+    headport=n,
+
+    taillabel="1",
+    headlabel="1",
+
+    labeldistance=1.4,
+    labelangle=-25,
+    labelfloat=true,
+
+    constraint=false
+];
+
+  // Controller
+  DashboardController -> StudienService [constraint=false];
+  DashboardController -> StudienRepository [constraint=false];
+  DashboardController -> DashboardDatenDTO [style=dashed, taillabel="erzeugt", constraint=false];
+
+  // DTO
+  DashboardView -> ModulDatenDTO [
+    style=dashed,
+    taillabel="stellt dar",
+    constraint=false
+];
+  DashboardDatenDTO -> FortschrittDatenDTO [dir=both, arrowtail=diamond, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.7, constraint=false];
+
+  // Repository
+  SQLiteStudienRepository -> StudienRepository [style=dashed, arrowhead=empty, constraint=false];
+  SQLiteStudienRepository -> Studiengang [style=dashed, taillabel="lädt / speichert", constraint=false];
+
+  // Service
+  StudienService -> Studiengang [style=dashed, taillabel="wertet aus", constraint=false];
+
+  // Domain
+  Studiengang -> Semester [dir=both, arrowtail=diamond, arrowhead=none, taillabel="1", headlabel="1..*", labeldistance=1.2, constraint=false];
+  Semester -> Modul [dir=both, arrowtail=odiamond, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.2, constraint=false];
+  Modul -> Pruefungsleistung [dir=both, arrowtail=diamond, arrowhead=none, taillabel="1", headlabel="0..*", labeldistance=1.2, constraint=false];
+
+  // Enums
+  Modul -> Modulstatus [style=dashed, constraint=false];
+  Pruefungsleistung -> Pruefungsart [style=dashed, constraint=false];
+}
