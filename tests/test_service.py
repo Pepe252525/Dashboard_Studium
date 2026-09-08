@@ -42,7 +42,10 @@ def erstelle_test_studiengang() -> Studiengang:
         nummer=1,
         bezeichnung="1. Semester",
         studienstart=studienstart,
-        module=[bestandenes_modul, laufendes_modul]
+        module=[
+            bestandenes_modul,
+            laufendes_modul
+        ]
     )
 
     return Studiengang(
@@ -60,55 +63,220 @@ def test_berechne_erreichte_ects():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    assert service.berechne_erreichte_ects(studiengang) == 10
+    assert (
+        service.berechne_erreichte_ects(
+            studiengang
+        )
+        == 10
+    )
 
 
 def test_berechne_verbleibende_ects():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    assert service.berechne_verbleibende_ects(studiengang) == 170
+    assert (
+        service.berechne_verbleibende_ects(
+            studiengang
+        )
+        == 170
+    )
 
 
 def test_berechne_fortschritt():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    assert service.berechne_fortschritt(studiengang) == 5.56
+    assert (
+        service.berechne_fortschritt(
+            studiengang
+        )
+        == 5.56
+    )
 
 
 def test_berechne_notendurchschnitt():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    assert service.berechne_notendurchschnitt(studiengang) == 2.0
+    assert (
+        service.berechne_notendurchschnitt(
+            studiengang
+        )
+        == 2.0
+    )
+
+
+def test_berechne_gewichteten_notendurchschnitt():
+    service = StudienService()
+
+    studienstart = date(2023, 7, 17)
+
+    pruefung_1 = Pruefungsleistung(
+        bezeichnung="Prüfung 1",
+        pruefungsart=Pruefungsart.KLAUSUR,
+        note=1.0
+    )
+
+    pruefung_2 = Pruefungsleistung(
+        bezeichnung="Prüfung 2",
+        pruefungsart=Pruefungsart.KLAUSUR,
+        note=3.0
+    )
+
+    modul_1 = Modul(
+        modulnummer="MOD01",
+        bezeichnung="Modul 1",
+        ects=5,
+        pruefungsleistungen=[
+            pruefung_1
+        ]
+    )
+
+    modul_2 = Modul(
+        modulnummer="MOD02",
+        bezeichnung="Modul 2",
+        ects=10,
+        pruefungsleistungen=[
+            pruefung_2
+        ]
+    )
+
+    semester = Semester(
+        nummer=1,
+        bezeichnung="1. Semester",
+        studienstart=studienstart,
+        module=[
+            modul_1,
+            modul_2
+        ]
+    )
+
+    studiengang = Studiengang(
+        bezeichnung="Teststudiengang",
+        gesamt_ects=180,
+        startdatum=studienstart,
+        regulaeres_enddatum=date(
+            2026,
+            7,
+            17
+        ),
+        ziel_enddatum=date(
+            2027,
+            7,
+            17
+        ),
+        zielnote=2.0,
+        semester=[
+            semester
+        ]
+    )
+
+    assert (
+        service.berechne_notendurchschnitt(
+            studiengang
+        )
+        == 2.33
+    )
+
+
+def test_notendurchschnitt_ohne_bewertete_module():
+    service = StudienService()
+
+    studienstart = date(2023, 7, 17)
+
+    pruefung = Pruefungsleistung(
+        bezeichnung="Klausur",
+        pruefungsart=Pruefungsart.KLAUSUR
+    )
+
+    modul = Modul(
+        modulnummer="MOD01",
+        bezeichnung="Unbewertetes Modul",
+        ects=5,
+        pruefungsleistungen=[
+            pruefung
+        ]
+    )
+
+    semester = Semester(
+        nummer=1,
+        bezeichnung="1. Semester",
+        studienstart=studienstart,
+        module=[
+            modul
+        ]
+    )
+
+    studiengang = Studiengang(
+        bezeichnung="Teststudiengang",
+        gesamt_ects=180,
+        startdatum=studienstart,
+        regulaeres_enddatum=date(
+            2026,
+            7,
+            17
+        ),
+        ziel_enddatum=date(
+            2027,
+            7,
+            17
+        ),
+        zielnote=2.0,
+        semester=[
+            semester
+        ]
+    )
+
+    assert (
+        service.berechne_notendurchschnitt(
+            studiengang
+        )
+        is None
+    )
 
 
 def test_ermittle_bestandene_module():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    assert service.ermittle_bestandene_module(studiengang) == 1
+    assert (
+        service.ermittle_bestandene_module(
+            studiengang
+        )
+        == 1
+    )
 
 
 def test_ermittle_laufende_module():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    assert service.ermittle_laufende_module(studiengang) == 1
+    assert (
+        service.ermittle_laufende_module(
+            studiengang
+        )
+        == 1
+    )
 
 
 def test_berechne_soll_ist_abweichung():
     service = StudienService()
     studiengang = erstelle_test_studiengang()
 
-    abweichung = service.berechne_soll_ist_abweichung(
-        studiengang,
-        date(2024, 7, 17)
+    abweichung = (
+        service.berechne_soll_ist_abweichung(
+            studiengang,
+            date(2024, 7, 17)
+        )
     )
 
-    assert isinstance(abweichung, float)
-    
+    assert isinstance(
+        abweichung,
+        float
+    )
+
+
 def test_erreichte_ects_am_datum():
     service = StudienService()
 
@@ -126,14 +294,18 @@ def test_erreichte_ects_am_datum():
         bezeichnung="Testmodul",
         ects=10,
         status=Modulstatus.IN_BEARBEITUNG,
-        pruefungsleistungen=[pruefung]
+        pruefungsleistungen=[
+            pruefung
+        ]
     )
 
     semester = Semester(
         nummer=1,
         bezeichnung="1. Semester",
         studienstart=studienstart,
-        module=[modul]
+        module=[
+            modul
+        ]
     )
 
     studiengang = Studiengang(
@@ -143,7 +315,9 @@ def test_erreichte_ects_am_datum():
         regulaeres_enddatum=date(2026, 7, 17),
         ziel_enddatum=date(2027, 7, 17),
         zielnote=2.0,
-        semester=[semester]
+        semester=[
+            semester
+        ]
     )
 
     assert (
@@ -196,7 +370,9 @@ def test_modul_mit_mehreren_pruefungen():
         nummer=1,
         bezeichnung="1. Semester",
         studienstart=studienstart,
-        module=[modul]
+        module=[
+            modul
+        ]
     )
 
     studiengang = Studiengang(
@@ -206,7 +382,9 @@ def test_modul_mit_mehreren_pruefungen():
         regulaeres_enddatum=date(2026, 7, 17),
         ziel_enddatum=date(2027, 7, 17),
         zielnote=2.0,
-        semester=[semester]
+        semester=[
+            semester
+        ]
     )
 
     assert (

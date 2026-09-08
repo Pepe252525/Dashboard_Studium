@@ -101,3 +101,5 @@ def test_studiengang_enthaelt_semester():
 
     assert len(studiengang.semester) == 1
     assert studiengang.semester[0].nummer == 1
+    assert studiengang.bezeichnung == "Softwareentwicklung"
+    assert studiengang.zielnote == 2.0

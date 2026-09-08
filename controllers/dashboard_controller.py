@@ -31,6 +31,11 @@ class DashboardController:
         )
 
         return DashboardDatenDTO(
+            studiengang_bezeichnung=studiengang.bezeichnung,
+            studienbeginn=studiengang.startdatum,
+            ziel_enddatum=studiengang.ziel_enddatum,
+            zielnote=studiengang.zielnote,
+
             gesamt_ects=studiengang.gesamt_ects,
 
             erreichte_ects=(

@@ -99,19 +99,29 @@ digraph StudyPilot {
     penwidth=1.2;
 
     DashboardDatenDTO [label=<
-      <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
-        <TR><TD><B>DashboardDatenDTO &lt;&lt;DTO&gt;&gt;</B></TD></TR>
-        <TR><TD ALIGN="LEFT">+ gesamt_ects : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ erreichte_ects : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ verbleibende_ects : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ fortschritt_prozent : Float</TD></TR>
-        <TR><TD ALIGN="LEFT">+ notendurchschnitt : Float [0..1]</TD></TR>
-        <TR><TD ALIGN="LEFT">+ bestandene_module : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ laufende_module : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ module : List&lt;ModulDatenDTO&gt;</TD></TR>
-        <TR><TD ALIGN="LEFT">+ fortschritt_verlauf : List&lt;FortschrittDatenDTO&gt;</TD></TR>
-      </TABLE>
-    >];
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"
+         COLOR="#404040" BGCOLOR="white">
+
+    <TR><TD><B>DashboardDatenDTO &lt;&lt;DTO&gt;&gt;</B></TD></TR>
+
+    <TR><TD ALIGN="LEFT">+ studiengang_bezeichnung : String</TD></TR>
+    <TR><TD ALIGN="LEFT">+ studienbeginn : Date</TD></TR>
+    <TR><TD ALIGN="LEFT">+ ziel_enddatum : Date</TD></TR>
+    <TR><TD ALIGN="LEFT">+ zielnote : Float</TD></TR>
+
+    <TR><TD ALIGN="LEFT">+ gesamt_ects : Integer</TD></TR>
+    <TR><TD ALIGN="LEFT">+ erreichte_ects : Integer</TD></TR>
+    <TR><TD ALIGN="LEFT">+ verbleibende_ects : Integer</TD></TR>
+    <TR><TD ALIGN="LEFT">+ fortschritt_prozent : Float</TD></TR>
+    <TR><TD ALIGN="LEFT">+ notendurchschnitt : Float [0..1]</TD></TR>
+    <TR><TD ALIGN="LEFT">+ bestandene_module : Integer</TD></TR>
+    <TR><TD ALIGN="LEFT">+ laufende_module : Integer</TD></TR>
+
+    <TR><TD ALIGN="LEFT">+ module : List&lt;ModulDatenDTO&gt;</TD></TR>
+    <TR><TD ALIGN="LEFT">+ fortschritt_verlauf : List&lt;FortschrittDatenDTO&gt;</TD></TR>
+
+  </TABLE>
+>];
 
     ModulDatenDTO [label=<
       <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">

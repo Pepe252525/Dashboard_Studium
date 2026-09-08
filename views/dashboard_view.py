@@ -920,26 +920,32 @@ class DashboardView(QMainWindow):
             18
         )
 
+        # Dynamische Werte aus dem Dashboard-Daten-DTO
+        self.studiengang_info_wert = QLabel("-")
+        self.studienbeginn_info_wert = QLabel("-")
+        self.abschluss_info_wert = QLabel("-")
+        self.gesamtumfang_info_wert = QLabel("-")
+
         infos = [
             (
                 "🎓",
                 "Studiengang",
-                "Softwareentwicklung"
+                self.studiengang_info_wert
             ),
             (
                 "📅",
                 "Studienbeginn",
-                "--"
+                self.studienbeginn_info_wert
             ),
             (
                 "🚩",
                 "Geplantes Abschlussdatum",
-                "--"
+                self.abschluss_info_wert
             ),
             (
                 "📚",
                 "Gesamtumfang",
-                "180 ECTS"
+                self.gesamtumfang_info_wert
             )
         ]
 
@@ -977,9 +983,7 @@ class DashboardView(QMainWindow):
         self.laufende_module_wert = QLabel("-")
 
         self.ects_detail = QLabel("-")
-        self.noten_detail = QLabel(
-            "Aktueller Durchschnitt"
-        )
+        self.noten_detail = QLabel("-")
         self.bestanden_detail = QLabel("-")
         self.laufend_detail = QLabel(
             "aktuell in Bearbeitung"
@@ -1308,10 +1312,10 @@ class DashboardView(QMainWindow):
 
     def _erstelle_info_element(
         self,
-        icon,
-        titel_text,
-        wert_text
-    ):
+        icon: str,
+        titel_text: str,
+        wert_text: str | QLabel
+    ) -> QWidget:
 
         widget = QWidget()
 
@@ -1356,9 +1360,16 @@ class DashboardView(QMainWindow):
             "info_titel"
         )
 
-        wert = QLabel(
-            wert_text
-        )
+        if isinstance(
+            wert_text,
+            QLabel
+        ):
+            wert = wert_text
+
+        else:
+            wert = QLabel(
+                wert_text
+            )
 
         wert.setObjectName(
             "info_wert"
@@ -1472,6 +1483,34 @@ class DashboardView(QMainWindow):
         daten: DashboardDatenDTO
     ) -> None:
 
+        # --------------------------------------------------
+        # Studieninformationen
+        # --------------------------------------------------
+
+        self.studiengang_info_wert.setText(
+            daten.studiengang_bezeichnung
+        )
+
+        self.studienbeginn_info_wert.setText(
+            daten.studienbeginn.strftime(
+                "%d.%m.%Y"
+            )
+        )
+
+        self.abschluss_info_wert.setText(
+            daten.ziel_enddatum.strftime(
+                "%d.%m.%Y"
+            )
+        )
+
+        self.gesamtumfang_info_wert.setText(
+            f"{daten.gesamt_ects} ECTS"
+        )
+
+        # --------------------------------------------------
+        # KPI-Karten
+        # --------------------------------------------------
+
         self.ects_wert.setText(
             f"{daten.fortschritt_prozent:.1f} %"
         )
@@ -1487,6 +1526,10 @@ class DashboardView(QMainWindow):
             self.noten_wert.setText(
                 f"{daten.notendurchschnitt:.2f}"
             )
+
+        self.noten_detail.setText(
+            f"Zielnote: {daten.zielnote:.2f}"
+        )
 
         self.bestandene_module_wert.setText(
             str(
@@ -1504,6 +1547,10 @@ class DashboardView(QMainWindow):
             f"{daten.bestandene_module} "
             "erfolgreich abgeschlossen"
         )
+
+        # --------------------------------------------------
+        # ECTS-Fortschritt
+        # --------------------------------------------------
 
         self.circular_progress.set_wert(
             daten.fortschritt_prozent
@@ -1527,12 +1574,18 @@ class DashboardView(QMainWindow):
             )
         )
 
-        # Diagramm
+        # --------------------------------------------------
+        # Soll-Ist-Diagramm
+        # --------------------------------------------------
+
         self.fortschritt_chart.set_daten(
             daten.fortschritt_verlauf
         )
 
+        # --------------------------------------------------
         # Modultabelle
+        # --------------------------------------------------
+
         self.modul_tabelle.setRowCount(
             len(daten.module)
         )

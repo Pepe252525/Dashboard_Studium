@@ -53,19 +53,50 @@ class StudienService:
         self,
         studiengang: Studiengang
     ) -> float | None:
-        noten = [
-            pruefung.note
-            for semester in studiengang.semester
-            for modul in semester.module
-            for pruefung in modul.pruefungsleistungen
-            if pruefung.note is not None
-        ]
 
-        if not noten:
+        gewichtete_notensumme = 0.0
+        gewichtete_ects = 0
+
+        for semester in studiengang.semester:
+            for modul in semester.module:
+
+                if not modul.pruefungsleistungen:
+                    continue
+
+                noten = [
+                    pruefung.note
+                    for pruefung
+                    in modul.pruefungsleistungen
+                    if pruefung.note is not None
+                ]
+
+                # Ein Modul wird erst berücksichtigt,
+                # wenn alle Prüfungsleistungen bewertet sind.
+                if (
+                    not noten
+                    or len(noten)
+                    != len(modul.pruefungsleistungen)
+                ):
+                    continue
+
+                modulnote = (
+                    sum(noten)
+                    / len(noten)
+                )
+
+                gewichtete_notensumme += (
+                    modulnote
+                    * modul.ects
+                )
+
+                gewichtete_ects += modul.ects
+
+        if gewichtete_ects == 0:
             return None
 
         return round(
-            sum(noten) / len(noten),
+            gewichtete_notensumme
+            / gewichtete_ects,
             2
         )
 
