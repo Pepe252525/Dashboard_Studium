@@ -130,8 +130,8 @@ digraph StudyPilot {
       <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#404040" BGCOLOR="white">
         <TR><TD><B>FortschrittDatenDTO &lt;&lt;DTO&gt;&gt;</B></TD></TR>
         <TR><TD ALIGN="LEFT">+ datum : Date</TD></TR>
-        <TR><TD ALIGN="LEFT">+ soll_fortschritt : Decimal</TD></TR>
-        <TR><TD ALIGN="LEFT">+ ist_fortschritt : Decimal [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">+ soll_fortschritt : Float</TD></TR>
+        <TR><TD ALIGN="LEFT">+ ist_fortschritt : Float [0..1]</TD></TR>
       </TABLE>
     >];
 
@@ -155,14 +155,14 @@ digraph StudyPilot {
         <TR><TD><B>StudienService</B></TD></TR>
         <TR><TD ALIGN="LEFT">+ berechne_erreichte_ects(...) : Integer</TD></TR>
         <TR><TD ALIGN="LEFT">+ berechne_verbleibende_ects(...) : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ berechne_fortschritt(...) : Decimal</TD></TR>
-        <TR><TD ALIGN="LEFT">+ berechne_notendurchschnitt(...) : Decimal [0..1]</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_fortschritt(...) : Float</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_notendurchschnitt(...) : Float [0..1]</TD></TR>
         <TR><TD ALIGN="LEFT">+ ermittle_bestandene_module(...) : Integer</TD></TR>
         <TR><TD ALIGN="LEFT">+ ermittle_laufende_module(...) : Integer</TD></TR>
         <TR><TD ALIGN="LEFT">+ berechne_erreichte_ects_am_datum(...) : Integer</TD></TR>
-        <TR><TD ALIGN="LEFT">+ berechne_fortschritt_am_datum(...) : Decimal</TD></TR>
-        <TR><TD ALIGN="LEFT">+ berechne_soll_fortschritt(...) : Decimal</TD></TR>
-        <TR><TD ALIGN="LEFT">+ berechne_soll_ist_abweichung(...) : Decimal</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_fortschritt_am_datum(...) : Float</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_soll_fortschritt(...) : Float</TD></TR>
+        <TR><TD ALIGN="LEFT">+ berechne_soll_ist_abweichung(...) : Float [0..1]</TD></TR>
       </TABLE>
     >];
   }
@@ -352,7 +352,44 @@ digraph StudyPilot {
 
     constraint=false
 ];
+// View verwendet das Haupt-DTO
+DashboardView -> DashboardDatenDTO [
+    style=dashed,
+    taillabel="stellt dar",
+    constraint=false
+];
 
+// FortschrittChart verarbeitet die Verlaufs-DTOs
+FortschrittChart -> FortschrittDatenDTO [
+    style=dashed,
+    taillabel="stellt dar",
+    constraint=false
+];
+
+// Controller erzeugt diese DTOs direkt
+DashboardController -> ModulDatenDTO [
+    style=dashed,
+    taillabel="erzeugt",
+    constraint=false
+];
+
+DashboardController -> FortschrittDatenDTO [
+    style=dashed,
+    taillabel="erzeugt",
+    constraint=false
+];
+
+// DashboardDTO enthält ModulDTOs
+DashboardDatenDTO -> ModulDatenDTO [
+    dir=both,
+    arrowtail=diamond,
+    arrowhead=none,
+    taillabel="1",
+    headlabel="0..*",
+    labeldistance=1.4,
+    labelangle=20,
+    constraint=false
+];
   // Controller
   DashboardController -> StudienService [constraint=false];
   DashboardController -> StudienRepository [constraint=false];

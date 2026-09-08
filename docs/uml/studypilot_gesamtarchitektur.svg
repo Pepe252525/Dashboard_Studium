@@ -95,21 +95,21 @@
 <text xml:space="preserve" text-anchor="start" x="1214.75" y="-1045.5" font-family="Arial" font-weight="bold" font-size="10.00">StudienService</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-1020.25" font-family="Arial" font-size="10.00">+ berechne_erreichte_ects(...) : Integer</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-996.25" font-family="Arial" font-size="10.00">+ berechne_verbleibende_ects(...) : Integer</text>
-<text xml:space="preserve" text-anchor="start" x="1139.75" y="-972.25" font-family="Arial" font-size="10.00">+ berechne_fortschritt(...) : Decimal</text>
-<text xml:space="preserve" text-anchor="start" x="1139.75" y="-948.25" font-family="Arial" font-size="10.00">+ berechne_notendurchschnitt(...) : Decimal [0..1]</text>
+<text xml:space="preserve" text-anchor="start" x="1139.75" y="-972.25" font-family="Arial" font-size="10.00">+ berechne_fortschritt(...) : Float</text>
+<text xml:space="preserve" text-anchor="start" x="1139.75" y="-948.25" font-family="Arial" font-size="10.00">+ berechne_notendurchschnitt(...) : Float [0..1]</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-924.25" font-family="Arial" font-size="10.00">+ ermittle_bestandene_module(...) : Integer</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-900.25" font-family="Arial" font-size="10.00">+ ermittle_laufende_module(...) : Integer</text>
 <text xml:space="preserve" text-anchor="start" x="1139.75" y="-876.25" font-family="Arial" font-size="10.00">+ berechne_erreichte_ects_am_datum(...) : Integer</text>
-<text xml:space="preserve" text-anchor="start" x="1139.75" y="-852.25" font-family="Arial" font-size="10.00">+ berechne_fortschritt_am_datum(...) : Decimal</text>
-<text xml:space="preserve" text-anchor="start" x="1139.75" y="-828.25" font-family="Arial" font-size="10.00">+ berechne_soll_fortschritt(...) : Decimal</text>
-<text xml:space="preserve" text-anchor="start" x="1139.75" y="-804.25" font-family="Arial" font-size="10.00">+ berechne_soll_ist_abweichung(...) : Decimal</text>
+<text xml:space="preserve" text-anchor="start" x="1139.75" y="-852.25" font-family="Arial" font-size="10.00">+ berechne_fortschritt_am_datum(...) : Float</text>
+<text xml:space="preserve" text-anchor="start" x="1139.75" y="-828.25" font-family="Arial" font-size="10.00">+ berechne_soll_fortschritt(...) : Float</text>
+<text xml:space="preserve" text-anchor="start" x="1139.75" y="-804.25" font-family="Arial" font-size="10.00">+ berechne_soll_ist_abweichung(...) : Float [0..1]</text>
 </g>
 <!-- StudyPilotApp&#45;&gt;StudienService -->
 <g id="edge20" class="edge">
 <title>StudyPilotApp&#45;&gt;StudienService</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M150.71,-903.13C150.71,-865.64 150.71,-799 150.71,-799 150.71,-799 1123.56,-799 1123.56,-799"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1123.56,-801.63 1131.06,-799 1123.56,-796.38 1123.56,-801.63"/>
-<text xml:space="preserve" text-anchor="middle" x="166.08" y="-894.58" font-family="Arial" font-size="9.00">erzeugt</text>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M150.71,-903.21C150.71,-866.25 150.71,-801 150.71,-801 150.71,-801 1123.56,-801 1123.56,-801"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1123.56,-803.63 1131.06,-801 1123.56,-798.38 1123.56,-803.63"/>
+<text xml:space="preserve" text-anchor="middle" x="135.33" y="-894.66" font-family="Arial" font-size="9.00">erzeugt</text>
 </g>
 <!-- SQLiteStudienRepository -->
 <g id="node11" class="node">
@@ -124,9 +124,9 @@
 <!-- StudyPilotApp&#45;&gt;SQLiteStudienRepository -->
 <g id="edge21" class="edge">
 <title>StudyPilotApp&#45;&gt;SQLiteStudienRepository</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M123.29,-903.07C123.29,-854.96 123.29,-754 123.29,-754 123.29,-754 1666.81,-754 1666.81,-754 1666.81,-754 1666.81,-869.75 1666.81,-869.75"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1664.19,-869.75 1666.81,-877.25 1669.44,-869.75 1664.19,-869.75"/>
-<text xml:space="preserve" text-anchor="middle" x="107.92" y="-894.52" font-family="Arial" font-size="9.00">erzeugt</text>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M123.29,-903.24C123.29,-857.65 123.29,-765 123.29,-765 123.29,-765 1666.81,-765 1666.81,-765 1666.81,-765 1666.81,-869.78 1666.81,-869.78"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1664.19,-869.78 1666.81,-877.28 1669.44,-869.78 1664.19,-869.78"/>
+<text xml:space="preserve" text-anchor="middle" x="107.92" y="-894.69" font-family="Arial" font-size="9.00">erzeugt</text>
 </g>
 <!-- DashboardView&#45;&gt;DashboardController -->
 <!-- CircularProgress -->
@@ -143,10 +143,10 @@
 <!-- DashboardView&#45;&gt;CircularProgress -->
 <g id="edge22" class="edge">
 <title>DashboardView:s&#45;&gt;CircularProgress:n</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M359.29,-892.79C359.29,-892.79 359.29,-685.96 359.29,-685.96"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="359.29,-892.97 362.29,-897.47 359.29,-901.97 356.29,-897.47 359.29,-892.97"/>
-<text xml:space="preserve" text-anchor="middle" x="353.38" y="-695.35" font-family="Arial" font-size="9.00">1</text>
-<text xml:space="preserve" text-anchor="middle" x="365.21" y="-887.07" font-family="Arial" font-size="9.00">1</text>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M408.71,-892.79C408.71,-892.79 408.71,-685.96 408.71,-685.96"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="408.71,-892.97 411.71,-897.47 408.71,-901.97 405.71,-897.47 408.71,-892.97"/>
+<text xml:space="preserve" text-anchor="middle" x="402.79" y="-695.35" font-family="Arial" font-size="9.00">1</text>
+<text xml:space="preserve" text-anchor="middle" x="414.62" y="-887.07" font-family="Arial" font-size="9.00">1</text>
 </g>
 <!-- FortschrittChart -->
 <g id="node5" class="node">
@@ -183,6 +183,13 @@
 <text xml:space="preserve" text-anchor="start" x="872.5" y="-816.25" font-family="Arial" font-size="10.00">+ fortschritt_verlauf : List&lt;FortschrittDatenDTO&gt;</text>
 </g>
 <!-- DashboardView&#45;&gt;DashboardDatenDTO -->
+<!-- DashboardView&#45;&gt;DashboardDatenDTO -->
+<g id="edge24" class="edge">
+<title>DashboardView&#45;&gt;DashboardDatenDTO</title>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M469.12,-903.03C469.12,-873.12 469.12,-827 469.12,-827 469.12,-827 856.21,-827 856.21,-827"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="856.21,-829.63 863.71,-827 856.21,-824.38 856.21,-829.63"/>
+<text xml:space="preserve" text-anchor="middle" x="451.88" y="-894.48" font-family="Arial" font-size="9.00">stellt dar</text>
+</g>
 <!-- ModulDatenDTO -->
 <g id="node7" class="node">
 <title>ModulDatenDTO</title>
@@ -198,25 +205,49 @@
 <text xml:space="preserve" text-anchor="start" x="752.5" y="-549.25" font-family="Arial" font-size="10.00">+ note : Float [0..1]</text>
 </g>
 <!-- DashboardView&#45;&gt;ModulDatenDTO -->
-<g id="edge27" class="edge">
+<g id="edge32" class="edge">
 <title>DashboardView&#45;&gt;ModulDatenDTO</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M465.46,-903.42C465.46,-846.4 465.46,-710 465.46,-710 465.46,-710 736.36,-710 736.36,-710"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="736.36,-712.63 743.86,-710 736.36,-707.38 736.36,-712.63"/>
-<text xml:space="preserve" text-anchor="middle" x="448.21" y="-894.87" font-family="Arial" font-size="9.00">stellt dar</text>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M463.62,-903.38C463.62,-844.81 463.62,-702 463.62,-702 463.62,-702 736.41,-702 736.41,-702"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="736.41,-704.63 743.91,-702 736.41,-699.38 736.41,-704.63"/>
+<text xml:space="preserve" text-anchor="middle" x="480.88" y="-894.83" font-family="Arial" font-size="9.00">stellt dar</text>
 </g>
 <!-- DashboardController&#45;&gt;FortschrittChart -->
 <!-- DashboardController&#45;&gt;DashboardDatenDTO -->
-<g id="edge26" class="edge">
+<g id="edge31" class="edge">
 <title>DashboardController&#45;&gt;DashboardDatenDTO</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M721.2,-928C721.2,-928 856.26,-928 856.26,-928"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="856.26,-930.63 863.76,-928 856.26,-925.38 856.26,-930.63"/>
 <text xml:space="preserve" text-anchor="middle" x="736.57" y="-929.95" font-family="Arial" font-size="9.00">erzeugt</text>
 </g>
+<!-- DashboardController&#45;&gt;ModulDatenDTO -->
+<g id="edge26" class="edge">
+<title>DashboardController&#45;&gt;ModulDatenDTO</title>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M680.38,-867.26C680.38,-805.24 680.38,-718 680.38,-718 680.38,-718 736.37,-718 736.37,-718"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="736.37,-720.63 743.87,-718 736.37,-715.38 736.37,-720.63"/>
+<text xml:space="preserve" text-anchor="middle" x="665" y="-858.71" font-family="Arial" font-size="9.00">erzeugt</text>
+</g>
+<!-- FortschrittDatenDTO -->
+<g id="node8" class="node">
+<title>FortschrittDatenDTO</title>
+<polygon fill="white" stroke="none" points="935,-588 935,-686 1093,-686 1093,-588 935,-588"/>
+<polygon fill="none" stroke="#404040" points="935,-588 935,-686 1093,-686 1093,-588 935,-588"/>
+<text xml:space="preserve" text-anchor="start" x="942" y="-670.5" font-family="Arial" font-weight="bold" font-size="10.00">FortschrittDatenDTO &lt;&lt;DTO&gt;&gt;</text>
+<text xml:space="preserve" text-anchor="start" x="942" y="-645.25" font-family="Arial" font-size="10.00">+ datum : Date</text>
+<text xml:space="preserve" text-anchor="start" x="942" y="-621.25" font-family="Arial" font-size="10.00">+ soll_fortschritt : Float</text>
+<text xml:space="preserve" text-anchor="start" x="942" y="-597.25" font-family="Arial" font-size="10.00">+ ist_fortschritt : Float [0..1]</text>
+</g>
+<!-- DashboardController&#45;&gt;FortschrittDatenDTO -->
+<g id="edge27" class="edge">
+<title>DashboardController&#45;&gt;FortschrittDatenDTO</title>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M700.88,-867.19C700.88,-833.35 700.88,-798 700.88,-798 700.88,-798 1013.75,-798 1013.75,-798 1013.75,-798 1013.75,-695.06 1013.75,-695.06"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1016.38,-695.06 1013.75,-687.56 1011.13,-695.06 1016.38,-695.06"/>
+<text xml:space="preserve" text-anchor="middle" x="716.25" y="-858.64" font-family="Arial" font-size="9.00">erzeugt</text>
+</g>
 <!-- DashboardController&#45;&gt;StudienService -->
-<g id="edge24" class="edge">
+<g id="edge29" class="edge">
 <title>DashboardController&#45;&gt;StudienService</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M704.29,-867.33C704.29,-835.48 704.29,-803 704.29,-803 704.29,-803 1123.62,-803 1123.62,-803"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1123.62,-805.63 1131.12,-803 1123.62,-800.38 1123.62,-805.63"/>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M711.12,-867.09C711.12,-835.73 711.12,-804 711.12,-804 711.12,-804 1123.76,-804 1123.76,-804"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1123.76,-806.63 1131.26,-804 1123.76,-801.38 1123.76,-806.63"/>
 </g>
 <!-- StudienRepository -->
 <g id="node10" class="node">
@@ -228,30 +259,35 @@
 <text xml:space="preserve" text-anchor="start" x="1414" y="-900.25" font-family="Arial" font-size="10.00">+ speichere_studiengang(...) : None</text>
 </g>
 <!-- DashboardController&#45;&gt;StudienRepository -->
-<g id="edge25" class="edge">
+<g id="edge30" class="edge">
 <title>DashboardController&#45;&gt;StudienRepository</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M687.21,-867.09C687.21,-824.42 687.21,-775 687.21,-775 687.21,-775 1411,-775 1411,-775 1411,-775 1411,-882.04 1411,-882.04"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1408.38,-882.04 1411,-889.54 1413.63,-882.04 1408.38,-882.04"/>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M690.62,-867.38C690.62,-826.5 690.62,-780 690.62,-780 690.62,-780 1411,-780 1411,-780 1411,-780 1411,-881.72 1411,-881.72"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1408.38,-881.72 1411,-889.22 1413.63,-881.72 1408.38,-881.72"/>
 </g>
 <!-- CircularProgress&#45;&gt;FortschrittChart -->
+<!-- FortschrittChart&#45;&gt;FortschrittDatenDTO -->
+<g id="edge25" class="edge">
+<title>FortschrittChart&#45;&gt;FortschrittDatenDTO</title>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M620.29,-685.8C620.29,-715.98 620.29,-749 620.29,-749 620.29,-749 974.38,-749 974.38,-749 974.38,-749 974.38,-695.12 974.38,-695.12"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="977,-695.12 974.38,-687.62 971.75,-695.12 977,-695.12"/>
+<text xml:space="preserve" text-anchor="middle" x="603.04" y="-687.75" font-family="Arial" font-size="9.00">stellt dar</text>
+</g>
 <!-- DashboardDatenDTO&#45;&gt;ModulDatenDTO -->
-<!-- FortschrittDatenDTO -->
-<g id="node8" class="node">
-<title>FortschrittDatenDTO</title>
-<polygon fill="white" stroke="none" points="935,-588 935,-686 1093,-686 1093,-588 935,-588"/>
-<polygon fill="none" stroke="#404040" points="935,-588 935,-686 1093,-686 1093,-588 935,-588"/>
-<text xml:space="preserve" text-anchor="start" x="942" y="-670.5" font-family="Arial" font-weight="bold" font-size="10.00">FortschrittDatenDTO &lt;&lt;DTO&gt;&gt;</text>
-<text xml:space="preserve" text-anchor="start" x="942" y="-645.25" font-family="Arial" font-size="10.00">+ datum : Date</text>
-<text xml:space="preserve" text-anchor="start" x="942" y="-621.25" font-family="Arial" font-size="10.00">+ soll_fortschritt : Decimal</text>
-<text xml:space="preserve" text-anchor="start" x="942" y="-597.25" font-family="Arial" font-size="10.00">+ ist_fortschritt : Decimal [0..1]</text>
+<!-- DashboardDatenDTO&#45;&gt;ModulDatenDTO -->
+<g id="edge28" class="edge">
+<title>DashboardDatenDTO&#45;&gt;ModulDatenDTO</title>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M875.17,-796.85C875.17,-796.85 875.17,-733.58 875.17,-733.58"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="875.17,-797.04 878.17,-801.54 875.17,-806.04 872.17,-801.54 875.17,-797.04"/>
+<text xml:space="preserve" text-anchor="middle" x="870.38" y="-743.44" font-family="Arial" font-size="9.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="879.95" y="-790.66" font-family="Arial" font-size="9.00">1</text>
 </g>
 <!-- DashboardDatenDTO&#45;&gt;FortschrittDatenDTO -->
-<g id="edge28" class="edge">
+<g id="edge33" class="edge">
 <title>DashboardDatenDTO&#45;&gt;FortschrittDatenDTO</title>
-<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M1013.75,-796.85C1013.75,-796.85 1013.75,-685.73 1013.75,-685.73"/>
-<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1013.75,-797.04 1016.75,-801.54 1013.75,-806.04 1010.75,-801.54 1013.75,-797.04"/>
-<text xml:space="preserve" text-anchor="middle" x="1020.93" y="-697.84" font-family="Arial" font-size="9.00">0..*</text>
-<text xml:space="preserve" text-anchor="middle" x="1006.57" y="-788.41" font-family="Arial" font-size="9.00">1</text>
+<path fill="none" stroke="#3f4650" stroke-width="1.2" d="M1053.12,-796.85C1053.12,-796.85 1053.12,-685.73 1053.12,-685.73"/>
+<polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1053.13,-797.04 1056.13,-801.54 1053.13,-806.04 1050.13,-801.54 1053.13,-797.04"/>
+<text xml:space="preserve" text-anchor="middle" x="1060.31" y="-697.84" font-family="Arial" font-size="9.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="1045.94" y="-788.41" font-family="Arial" font-size="9.00">1</text>
 </g>
 <!-- DashboardDatenDTO&#45;&gt;StudienService -->
 <!-- Studiengang -->
@@ -271,7 +307,7 @@
 <!-- ModulDatenDTO&#45;&gt;FortschrittDatenDTO -->
 <!-- StudienService&#45;&gt;StudienRepository -->
 <!-- StudienService&#45;&gt;Studiengang -->
-<g id="edge31" class="edge">
+<g id="edge36" class="edge">
 <title>StudienService&#45;&gt;Studiengang</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M1179.12,-795.31C1179.12,-795.31 1179.12,-488.2 1179.12,-488.2"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1181.75,-488.2 1179.13,-480.7 1176.5,-488.2 1181.75,-488.2"/>
@@ -279,13 +315,13 @@
 </g>
 <!-- StudienRepository&#45;&gt;SQLiteStudienRepository -->
 <!-- SQLiteStudienRepository&#45;&gt;StudienRepository -->
-<g id="edge29" class="edge">
+<g id="edge34" class="edge">
 <title>SQLiteStudienRepository&#45;&gt;StudienRepository</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M1617.19,-916C1617.19,-916 1586.1,-916 1586.1,-916"/>
 <polygon fill="none" stroke="#3f4650" stroke-width="1.2" points="1586.1,-913.38 1578.6,-916 1586.1,-918.63 1586.1,-913.38"/>
 </g>
 <!-- SQLiteStudienRepository&#45;&gt;Studiengang -->
-<g id="edge30" class="edge">
+<g id="edge35" class="edge">
 <title>SQLiteStudienRepository&#45;&gt;Studiengang</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M1617.38,-885C1526.61,-885 1395.31,-885 1395.31,-885 1395.31,-885 1395.31,-473 1395.31,-473 1395.31,-473 1234.74,-473 1234.74,-473"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1234.74,-470.38 1227.24,-473 1234.74,-475.63 1234.74,-470.38"/>
@@ -305,7 +341,7 @@
 </g>
 <!-- Studiengang&#45;&gt;Semester -->
 <!-- Studiengang&#45;&gt;Semester -->
-<g id="edge32" class="edge">
+<g id="edge37" class="edge">
 <title>Studiengang&#45;&gt;Semester</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" d="M1235.63,-418C1235.63,-418 1265.49,-418 1265.49,-418"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1235.44,-418 1230.94,-421 1226.44,-418 1230.94,-415 1235.44,-418"/>
@@ -336,7 +372,7 @@
 </g>
 <!-- Semester&#45;&gt;Modul -->
 <!-- Semester&#45;&gt;Modul -->
-<g id="edge33" class="edge">
+<g id="edge38" class="edge">
 <title>Semester&#45;&gt;Modul</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" d="M1384.64,-370C1384.64,-370 1415.17,-370 1415.17,-370"/>
 <polygon fill="none" stroke="#3f4650" stroke-width="1.2" points="1384.45,-370 1379.95,-373 1375.45,-370 1379.95,-367 1384.45,-370"/>
@@ -358,7 +394,7 @@
 </g>
 <!-- Modul&#45;&gt;Pruefungsleistung -->
 <!-- Modul&#45;&gt;Pruefungsleistung -->
-<g id="edge34" class="edge">
+<g id="edge39" class="edge">
 <title>Modul&#45;&gt;Pruefungsleistung</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" d="M1541.16,-418C1541.16,-418 1571.61,-418 1571.61,-418"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1540.97,-418 1536.47,-421 1531.97,-418 1536.47,-415 1540.97,-418"/>
@@ -366,7 +402,7 @@
 <text xml:space="preserve" text-anchor="middle" x="1541.77" y="-409.63" font-family="Arial" font-size="9.00">1</text>
 </g>
 <!-- Modul&#45;&gt;Modulstatus -->
-<g id="edge35" class="edge">
+<g id="edge40" class="edge">
 <title>Modul&#45;&gt;Modulstatus</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M1473,-321C1473,-284.5 1473,-248 1473,-248 1473,-248 1174.71,-248 1174.71,-248 1174.71,-248 1174.71,-147.03 1174.71,-147.03"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1177.33,-147.03 1174.71,-139.53 1172.08,-147.03 1177.33,-147.03"/>
@@ -385,7 +421,7 @@
 <text xml:space="preserve" text-anchor="start" x="1263.38" y="-25.25" font-family="Arial" font-size="10.00">SONSTIGE</text>
 </g>
 <!-- Pruefungsleistung&#45;&gt;Pruefungsart -->
-<g id="edge36" class="edge">
+<g id="edge41" class="edge">
 <title>Pruefungsleistung&#45;&gt;Pruefungsart</title>
 <path fill="none" stroke="#3f4650" stroke-width="1.2" stroke-dasharray="5,2" d="M1571.62,-315C1493.2,-315 1379.12,-315 1379.12,-315 1379.12,-315 1379.12,-195.2 1379.12,-195.2"/>
 <polygon fill="#3f4650" stroke="#3f4650" stroke-width="1.2" points="1381.75,-195.2 1379.13,-187.7 1376.5,-195.2 1381.75,-195.2"/>
